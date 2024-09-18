@@ -1,0 +1,75 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="chart1" style="height: 300px"></div>
+  <div id="chart2" style="height: 300px"></div>
+
+  
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js"></script>
+  
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts-gl/2/files/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts-stat/latest/files/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-graph-modularity extension
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts-graph-modularity/2/files/dist/echarts-graph-modularity.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/4.9.0/files/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+	
+	function renderChart(id, data) {
+		var dom = document.getElementById(id);
+		var myChart = echarts.init(dom, null, {
+		  renderer: 'canvas',
+		  useDirtyRect: false
+		});
+		var option;
+		option = {
+			tooltip: {
+			trigger: 'axis'
+		  },
+		  xAxis: {
+			type: 'category',
+			data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+		  },
+		  yAxis: {
+			type: 'value'
+		  },
+		  series: [
+			{
+			  data: data,
+			  type: 'line'
+			}
+		  ]
+		};
+		
+		if (option && typeof option === 'object') {
+		  myChart.setOption(option);
+		  myChart.group = "group1";
+		}
+	}
+	
+	renderChart("chart1", [150, 230, 224, 218, 135, 147, 260]);
+	renderChart("chart2", [150, 230, null, null, null, 147, 260]);
+	echarts.connect("group1");
+  </script>
+</body>
+</html>
